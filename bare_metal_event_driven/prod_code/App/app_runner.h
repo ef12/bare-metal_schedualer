@@ -41,6 +41,7 @@ typedef struct
     events_types_t event;
 } task_t;
 
-void task_enqueue(task_func_t task_func, events_types_t event);
+void app_run(void);
+int task_enqueue(task_func_t task_func, events_types_t event);
 
 #endif /* PROD_CODE_APP_APP_RUNNER_H_ */

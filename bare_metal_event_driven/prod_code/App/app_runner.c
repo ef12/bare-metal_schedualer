@@ -27,11 +27,10 @@ static task_t pv_task;
 /*
  * Function prototypes
  */
-void task_enqueue(task_func_t task_func, events_types_t event);
 // Use macro to install the code for the fifo here
 INSTAL_FIFO_CODE(task_queue, task_t);
 
-int main(void)
+void app_run(void)
 {
     task_queue_init(&task_queue, task_queue_buff, TASK_QUEUE_SIZE);
 
@@ -49,15 +48,15 @@ int main(void)
             pv_task.task_func(pv_task.event);
         }
     }
-    return EXIT_SUCCESS;
 }
 
 
-void task_enqueue(task_func_t task_func, events_types_t event)
+int task_enqueue(task_func_t task_func, events_types_t event)
 {
     task_t task;
     task.task_func = task_func;
     task.event = event;
     //TODO: fifo in and out shall be in critical section
     task_queue_in(&task_queue, &task);
+    return 0;
 }
