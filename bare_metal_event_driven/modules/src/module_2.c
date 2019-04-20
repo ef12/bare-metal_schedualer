@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "module_1.h"
 #include "module_2.h"
+#include "module_1.h"
 
 typedef enum
 {

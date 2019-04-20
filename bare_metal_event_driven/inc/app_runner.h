@@ -5,8 +5,8 @@
  *      Author: efrank
  */
 
-#ifndef APP_RUNNER_H_
-#define APP_RUNNER_H_
+#ifndef INC_APP_RUNNER_H_
+#define INC_APP_RUNNER_H_
 
 #include "fifo.h"
 
@@ -43,4 +43,4 @@ typedef struct
 
 void task_enqueue(task_func_t task_func, events_types_t event);
 
-#endif /* APP_RUNNER_H_ */
+#endif /* INC_APP_RUNNER_H_ */

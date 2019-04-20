@@ -4,14 +4,17 @@
  *  Created on: 13 Apr 2019
  *      Author: efrank
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "event_input.h"
+
 #include "module_1.h"
 #include "module_2.h"
 
 static char input[8];
+
 
 int event_input_scan(void)
 {
@@ -52,4 +55,5 @@ int event_input_scan(void)
     }
     return 1;
 }
+
 

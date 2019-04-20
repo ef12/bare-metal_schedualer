@@ -5,11 +5,11 @@
  *      Author: efrank
  */
 
-#ifndef MODULE_2_H_
-#define MODULE_2_H_
+#ifndef MODULES_INC_MODULE_2_H_
+#define MODULES_INC_MODULE_2_H_
 
 #include "app_runner.h"
 
 void module_2_task(events_types_t event);
 
-#endif /* MODULE_2_H_ */
+#endif /* MODULES_INC_MODULE_2_H_ */

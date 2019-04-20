@@ -12,25 +12,24 @@
 #include <stdlib.h>
 
 #include "app_runner.h"
-#include "module_1.h"
 #include "event_input.h"
 
 #define EVER        ;;
 
+/*
+ * Private variables
+ */
+// use macro to declare fifo variables types and functions prototypes
 INSTAL_FIFO_TYPES(task_queue, task_t);
 static task_queue_s task_queue;
 static task_t task_queue_buff[TASK_QUEUE_SIZE];
 static task_t pv_task;
-
+/*
+ * Function prototypes
+ */
+void task_enqueue(task_func_t task_func, events_types_t event);
+// Use macro to install the code for the fifo here
 INSTAL_FIFO_CODE(task_queue, task_t);
-void task_enqueue(task_func_t task_func, events_types_t event)
-{
-    // critical section
-    task_t task;
-    task.task_func = task_func;
-    task.event = event;
-    task_queue_in(&task_queue, &task);
-}
 
 int main(void)
 {
@@ -38,19 +37,27 @@ int main(void)
 
     for (EVER)
     {
+    	// Here the user can simulate an event by typing some input
         if(!event_input_scan())
         {
+        	// No valid input was entered. This is the signal to break and exit program
             break;
         }
-
+        //TODO: fifo in and out shall be in critical section
         while (task_queue_out(&task_queue, &pv_task))
         {
-            // need to be in critical section
             pv_task.task_func(pv_task.event);
         }
-
     }
-
     return EXIT_SUCCESS;
 }
 
+
+void task_enqueue(task_func_t task_func, events_types_t event)
+{
+    task_t task;
+    task.task_func = task_func;
+    task.event = event;
+    //TODO: fifo in and out shall be in critical section
+    task_queue_in(&task_queue, &task);
+}
