@@ -107,7 +107,7 @@ $(PROD_PROJ_LOC)/Modules\
 $(PROD_PROJ_LOC)/Utils
 
 # Find all the source files in the above locations
-CUT_SRCS := $(shell find $(CUT_SRC_DIRS) -name *.cpp -or -name *.c ! -iname FreeRTOS.c -or -name *.s)
+CUT_SRCS := $(shell find $(CUT_SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 # Define the object files
 CUT_OBJS := $(CUT_SRCS:%=$(CUT_BUILD_DIR)/%.o) 
 # Define the dependency files
@@ -119,7 +119,7 @@ CUT_INC_FLAGS := $(addprefix -I,$(CUT_INCLUDES)) $(addprefix -I,$(CUT_INC_DIRS))
 
 
 # Includes flags. -MMD -MP are used to generate a .d file next to the .o file
-CUT_CPPFLAGS ?= $(CUT_INC_FLAGS) -DTDD #-MMD -MP 
+CUT_CPPFLAGS ?= $(CUT_INC_FLAGS) -DTDD -MMD -MP 
 # CUT LIBRARY CREATION
 #============================================================================
 # Define the location of the cut libreries
@@ -151,8 +151,7 @@ DEPS := $(OBJS:.o=.d)
 # To find all directories in a location
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 # Define the headers to include in the flag -I
-INC_FLAGS := $(addprefix -I,$(INC_DIRS)) \
-#-IProduction
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 # Includes flags. -MMD -MP are used to generate a .d file next to the .o file
 CPPFLAGS ?= $(INC_FLAGS) -Wall -g3 #-MMD -MP removed to reenable debuggin.
 
@@ -189,7 +188,7 @@ $(BUILD_DIR)/%.c.o: %.c
 	$(MKDIR_P) $(dir $@)
 	$(CC) $(CPPFLAGS) $(CUT_CPPFLAGS) -DTDD $(CFLAGS) -c $< -o $@
 
-# c source
+# c tester source
 $(TESTER_DIR)/%.c.o: %.c
 	$(MKDIR_P) $(dir $@)
 	$(CC) $(CPPFLAGS) $(CUT_CPPFLAGS) -DTDD $(CFLAGS) -c $< -o $@
