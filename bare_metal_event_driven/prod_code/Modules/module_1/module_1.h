@@ -10,6 +10,14 @@
 
 #include "app_runner.h"
 
-void module_1_task(events_types_t event);
+typedef enum
+{
+    module1_event1, module1_event2, module1_event3, num_of_module1_events
+} module1_event_t;
+
+void module_1_init(void);
+uint8_t module_1_event_enqueue(module1_event_t event, uint8_t data);
+void module_1_task(events_types_t e);
+
 
 #endif /* PROD_CODE_MODULES_MODULE_1_MODULE_1_H_ */

@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "fifo.h"
 #include "app_runner.h"
 #include "event_input.h"
 
@@ -20,7 +21,7 @@
  * Private variables
  */
 // use macro to declare fifo variables types and functions prototypes
-INSTAL_FIFO_TYPES(task_queue, task_t);
+INSTAL_FIFO_TYPES(task_queue, task_t)
 static task_queue_s task_queue;
 static task_t task_queue_buff[TASK_QUEUE_SIZE];
 static task_t pv_task;
@@ -28,12 +29,12 @@ static task_t pv_task;
  * Function prototypes
  */
 // Use macro to install the code for the fifo here
-INSTAL_FIFO_CODE(task_queue, task_t);
+INSTAL_FIFO_CODE(task_queue, task_t)
 
 void app_run(void)
 {
     task_queue_init(&task_queue, task_queue_buff, TASK_QUEUE_SIZE);
-
+    module_1_init();
     for (EVER)
     {
     	// Here the user can simulate an event by typing some input

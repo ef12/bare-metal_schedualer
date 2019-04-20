@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "module_1.h"
 #include "module_2.h"
@@ -35,7 +36,8 @@ int event_input_scan(void)
     }
     else if (!strcmp(input, "m1e1"))
     {
-        task_enqueue(module_1_task, module_1_event_1);
+        module_1_event_enqueue(module1_event1, 0);
+//        task_enqueue(module_1_task, module_1_event_1);
     }
     else if (!strcmp(input, "m1e2"))
     {

@@ -8,14 +8,7 @@
 #ifndef PROD_CODE_APP_APP_RUNNER_H_
 #define PROD_CODE_APP_APP_RUNNER_H_
 
-#include "fifo.h"
-
 #define TASK_QUEUE_SIZE         8
-//
-//typedef enum
-//{
-//    module_1_event_1, module_1_event_2, module_1_event_3, num_of_module_1_event
-//} module_1_event_t;
 //
 //typedef enum
 //{

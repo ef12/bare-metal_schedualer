@@ -11,7 +11,6 @@
 #include "module_2.h"
 #include "module_1.h"
 
-
 typedef enum
 {
     INIT_STATE, READY_STATE
@@ -21,6 +20,9 @@ static states_t state = 0;
 
 void module_2_task(events_types_t event)
 {
+    static uint8_t num_of_entries = 0;
+
+    num_of_entries++;
     printf("\n********************************\r\n");
     printf("Module 2, ");
     switch (state)
@@ -50,7 +52,8 @@ void module_2_task(events_types_t event)
         if (event == module_2_event_2)
         {
             state = INIT_STATE;
-            task_enqueue(module_1_task, module_1_event_2);
+            module_1_event_enqueue(module1_event2, num_of_entries);
+//            task_enqueue(module_1_task, module_1_event_2);
             printf("go to INIT_STATE, ");
             printf("event_2\r\n");
         }
