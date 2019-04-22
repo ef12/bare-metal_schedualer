@@ -26,15 +26,15 @@ typedef enum
     module_2_event_3
 } events_types_t;
 
-typedef void (*task_func_t)(events_types_t event);
+typedef void (*task_func_t)(void *params);
 
 typedef struct
 {
     task_func_t task_func;
-    events_types_t event;
+    void *params;
 } task_t;
 
 void app_run(void);
-int task_enqueue(task_func_t task_func, events_types_t event);
+int task_enqueue(task_func_t task_func, void *params);
 
 #endif /* PROD_CODE_APP_APP_RUNNER_H_ */

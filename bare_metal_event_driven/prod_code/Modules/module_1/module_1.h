@@ -17,7 +17,7 @@ typedef enum
 
 void module_1_init(void);
 uint8_t module_1_event_enqueue(module1_event_t event, uint8_t data);
-void module_1_task(events_types_t e);
+void module_1_task(void *params);
 
 
 #endif /* PROD_CODE_MODULES_MODULE_1_MODULE_1_H_ */

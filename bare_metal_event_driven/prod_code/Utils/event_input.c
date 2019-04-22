@@ -15,10 +15,12 @@
 #include "module_2.h"
 
 static char input[8];
-
+static uint8_t some_data;
 
 int event_input_scan(void)
 {
+    some_data = 0;
+
     printf("please enter your event choice:\r\n");
     printf("module 1 event 1: m1e1\r\n");
     printf("module 1 event 2: m1e2\r\n");
@@ -36,20 +38,19 @@ int event_input_scan(void)
     }
     else if (!strcmp(input, "m1e1"))
     {
-        module_1_event_enqueue(module1_event1, 0);
-//        task_enqueue(module_1_task, module_1_event_1);
+        module_1_event_enqueue(module1_event1, some_data++);
     }
     else if (!strcmp(input, "m1e2"))
     {
-        task_enqueue(module_1_task, module_1_event_2);
+        module_1_event_enqueue(module1_event2, some_data++);
     }
     else if (!strcmp(input, "m2e1"))
     {
-        task_enqueue(module_2_task, module_2_event_1);
+        module_2_event_enqueue(module2_event1);
     }
     else if (!strcmp(input, "m2e2"))
     {
-        task_enqueue(module_2_task, module_2_event_2);
+        module_2_event_enqueue(module2_event2);
     }
     else
     {

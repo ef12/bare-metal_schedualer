@@ -14,6 +14,8 @@
 #include "fifo.h"
 #include "app_runner.h"
 #include "event_input.h"
+#include "module_1.h"
+#include "module_2.h"
 
 #define EVER        ;;
 
@@ -35,6 +37,8 @@ void app_run(void)
 {
     task_queue_init(&task_queue, task_queue_buff, TASK_QUEUE_SIZE);
     module_1_init();
+    module_2_init();
+
     for (EVER)
     {
     	// Here the user can simulate an event by typing some input
@@ -46,17 +50,24 @@ void app_run(void)
         //TODO: fifo in and out shall be in critical section
         while (task_queue_out(&task_queue, &pv_task))
         {
-            pv_task.task_func(pv_task.event);
+            pv_task.task_func(pv_task.params);
         }
     }
 }
 
 
-int task_enqueue(task_func_t task_func, events_types_t event)
+int task_enqueue(task_func_t task_func, void *params)
 {
     task_t task;
+    // protect null pointer
+    if(task_func == 0)
+    {
+        // error
+        return 1;
+    }
+
     task.task_func = task_func;
-    task.event = event;
+    task.params = params;
     //TODO: fifo in and out shall be in critical section
     task_queue_in(&task_queue, &task);
     return 0;
