@@ -19,9 +19,6 @@ obj
 *.d
 *.elf
 *~.nib
-*.mk
-/*.mk
-*~.mk
 local.properties
 .plugin
 *.plugin

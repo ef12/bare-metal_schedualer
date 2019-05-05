@@ -25,7 +25,7 @@ TEST_GROUP(module_1)
 	}
 };
 
-TEST(module_1,module_1c_init)
+TEST(module_1,module_1_init)
 {
-	CHECK_EQUAL(0,task_enqueue(module_1_task, no_event))
+	CHECK_EQUAL(0,task_enqueue(module_1_task, 0));
 }
