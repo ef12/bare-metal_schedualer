@@ -3,17 +3,17 @@
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
-C++_SRCS += \
-./tests/test_test/test1.cpp
+TEST2_C++_SRCS += \
+./tests/test2/test2.cpp
 
-OBJS += \
-./Debug/tests/test_test/test1.o 
+TEST2_OBJS += \
+./Debug/tests/test2/test2.o 
 
-C++_DEPS += \
-./Debud/tests/test_test/test1.d 
+TEST2_C++_DEPS += \
+./Debug/tests/test2/test2.d 
 
 # Each subdirectory must supply rules for building sources it contributes
-./Debug/tests/test_test/%.o: ./tests/test_test/%.cpp
+./Debug/tests/test2/%.o: ./tests/test2/%.cpp
 	@mkdir -p $(dir $@)
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C++ Compiler'

@@ -4,33 +4,16 @@
 
 RM := rm -rf
 
-C_UPPER_SRCS := 
-CXX_SRCS := 
-C++_SRCS := 
-OBJ_SRCS := 
-CC_SRCS := 
-ASM_SRCS := 
-CPP_SRCS := 
-C_SRCS := 
-S_UPPER_SRCS := 
-O_SRCS := 
-CC_DEPS := 
-C++_DEPS := 
-EXECUTABLES := 
-OBJS := 
-C_UPPER_DEPS := 
-CXX_DEPS := 
-CPP_DEPS := 
-C_DEPS := 
-
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
 tests \
-tests/test_test
+tests/test1\
+tests/test2
 # All of the sources participating in the build are defined here
 #-include sources.mk
--include tests/test_test/make_tests.mk
+-include tests/test1/make_test1.mk
+-include tests/test2/make_test2.mk
 -include tests/make_main.mk
 -include objects.mk
 
@@ -39,7 +22,7 @@ ifneq ($(strip $(CC_DEPS)),)
 -include $(CC_DEPS)
 endif
 ifneq ($(strip $(C++_DEPS)),)
--include $(C++_DEPS)
+-include $(TEST1_C++_DEPS)
 endif
 ifneq ($(strip $(C_UPPER_DEPS)),)
 -include $(C_UPPER_DEPS)
@@ -58,20 +41,45 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: tdd_damed.exe
+all: \
+test1\
+test2
 
 # Tool invocations
-tdd_damed.exe: $(OBJS) $(USER_OBJS)
+test1: $(TEST1_OBJS) $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Main Cygwin C++ Linker'
-	g++ -o "tdd_damed.exe" $(OBJS) $(USER_OBJS) $(L_LIBS) $(LIBS)
+	g++ -o "Debug/test1" $(TEST1_OBJS) $(OBJS) $(USER_OBJS) $(L_LIBS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
+# Tool invocations
+test2: $(TEST2_OBJS) $(OBJS) $(USER_OBJS)
+	@echo 'Building target: $@'
+	@echo 'Invoking: Main Cygwin C++ Linker'
+	g++ -o "Debug/test2" $(TEST2_OBJS) $(OBJS) $(USER_OBJS) $(L_LIBS) $(LIBS)
+	@echo 'Finished building target: $@'
+	@echo ' '
+	
 # Other Targets
-clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(CPP_DEPS)$(C_DEPS) tdd_damed.exe
+clean: clean_test1 clean_test2
+	-$(RM) $(C++_DEPS)$(EXECUTABLES)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(CPP_DEPS)$(C_DEPS)
 	-@echo ' '
 
-.PHONY: all clean dependents
+clean_test1:
+	-$(RM) $(TEST1_C++_DEPS) Debug/test1 Debug/tests/test1/test1.o
+	-@echo ' '
+	
+clean_test2:
+	-$(RM) $(TEST2_C++_DEPS) Debug/test2 Debug/tests/test2/test2.o
+	-@echo ' '
+
+.PHONY: \
+all\
+clean\
+test1\
+clean_test1\
+test2\
+clean_test2\
+dependents
 
