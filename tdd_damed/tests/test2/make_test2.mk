@@ -17,7 +17,15 @@ TEST2_C++_DEPS += \
 	@mkdir -p $(dir $@)
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C++ Compiler'
-	g++ $(USER_INCLUDE) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I$(CPPUTEST_INCS) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
+clean_test2:
+	-$(RM) $(TEST2_C++_DEPS) $(TEST2_OBJS) $(TEST2_CUT_C_DEPS) $(TEST2_CUT_OBJS) Debug/test2 ./Debug/$(TEST1_LOC)/cut/test2_cut.a
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(TEST2_C++_DEPS)),)
+-include $(TEST2_C++_DEPS)
+endif
+endif

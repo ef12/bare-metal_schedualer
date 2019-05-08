@@ -18,7 +18,7 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.cygwin.exe.debug.1768216651." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug.1063405703" name="Cygwin GCC" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.cygwin.exe.debug.393441403" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.cygwin.exe.debug"/>
-							<builder buildPath="${workspace_loc:/bare_metal_event_driven}" id="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug.2053063896" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug"/>
+							<builder buildPath="${workspace_loc:/bare_metal_event_driven}" enableAutoBuild="false" id="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug.2053063896" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug.1898044304" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1377938873" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>

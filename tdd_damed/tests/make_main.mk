@@ -6,10 +6,10 @@
 C++_SRCS += \
 ./tests/main.cpp
 
-OBJS += \
+MAIN_OBJS += \
 ./Debug/tests/main.o 
 
-C++_DEPS += \
+MAIN_C++_DEPS += \
 ./Debug/tests/main.d 
 
 
@@ -18,6 +18,12 @@ C++_DEPS += \
 	@mkdir -p $(dir $@)
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C++ Compiler'
-	g++ $(USER_INCLUDE) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I$(CPPUTEST_INCS) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(MAIN_C++_DEPS)),)
+-include $(MAIN_C++_DEPS)
+endif
+endif

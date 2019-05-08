@@ -4,12 +4,12 @@
 
 USER_OBJS := 
 
-USER_INCLUDE := \
--I../extern/cpputest_build/include
+CPPUTEST_INCS := \
+../extern/cpputest_build/include
 
-L_LIBS := \
+L_CPPUTEST_LIBS := \
 -L../extern/cpputest_build/lib
 
-LIBS := \
+CPPUTEST_LIBS := \
 -lCppUTest -lCppUTestExt
 

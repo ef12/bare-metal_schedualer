@@ -218,7 +218,7 @@ $(CUT_LIB_DIR)/$(FULL_CUT_LIB_NAME): $(CUT_OBJS) #let's link library files into 
 # build the target rule
 all: $(BUILD_DIR)/$(TARGET_EXEC)
 
-# clean rules	
+# clean rules
 .PHONY: clean
 clean:
 	$(RM) -r $(BUILD_DIR)
