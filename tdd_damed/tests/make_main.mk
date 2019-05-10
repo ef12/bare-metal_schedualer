@@ -22,6 +22,8 @@ MAIN_C++_DEPS += \
 	@echo 'Finished building: $<'
 	@echo ' '
 
+#g++ -I$(CPPUTEST_INCS) $(I_TEST1_INCS) $(I_CUT_INCS) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(strip $(MAIN_C++_DEPS)),)
 -include $(MAIN_C++_DEPS)

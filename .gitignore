@@ -18,6 +18,7 @@ obj
 *.o
 *.d
 *.elf
+*.settings
 *~.nib
 local.properties
 .plugin

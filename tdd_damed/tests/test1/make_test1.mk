@@ -25,7 +25,11 @@ TEST1_CUT_OBJS += \
 TEST1_CUT_C_DEPS := \
 ./Debug/$(TEST1_LOC)/cut/test_functions.d
 
-I_CUT_INCS += $(addprefix -I,$(CUT_LOC))
+I_CUT_INCS += \
+-I"Ctests\test1"\
+-I"..\bare_metal_event_driven\prod_code\Utils"\
+-I"tests\test2"\
+-I"..\extern\cpputest_build\include"
 
 ./Debug/$(TEST1_LOC)/cut/%.o: $(CUT_LOC)/%.c $(CUT_LOC)/%.h
 	@mkdir -p $(dir $@)
@@ -36,16 +40,16 @@ I_CUT_INCS += $(addprefix -I,$(CUT_LOC))
 	@echo ' '
 	
 # Create a library of the cut objects
-test1_cut: $(TEST1_CUT_OBJS) #let's link library files into a static library
+./Debug/$(TEST1_LOC)/cut/libtest1_cut.a: $(TEST1_CUT_OBJS) #let's link library files into a static library
 	@echo 'Building target: $@'
-	ar rcs ./Debug/$(TEST1_LOC)/cut/libtest1_cut.a $^
+	ar rcs $@ $^
 
 
-#ifneq ($(MAKECMDGOALS),clean_test1)
+ifneq ($(MAKECMDGOALS),clean_test1)
 ifneq ($(strip $(TEST1_CUT_DEPS)),)
 -include $(TEST1_CUT_DEPS)
 endif
-#endif
+endif
 
 ################################################################################
 # Recepie for tester code
@@ -63,7 +67,7 @@ TEST1_C++_DEPS += \
 
 I_TEST1_INCS += $(addprefix -I,$(TEST1_LOC))
 # Each subdirectory must supply rules for building sources it contributes
-./Debug/tests/test1/%.o: ./tests/test1/%.cpp test1_cut
+./Debug/tests/test1/%.o: ./tests/test1/%.cpp ./Debug/$(TEST1_LOC)/cut/libtest1_cut.a
 	@mkdir -p $(dir $@)
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C++ Compiler'
@@ -71,8 +75,10 @@ I_TEST1_INCS += $(addprefix -I,$(TEST1_LOC))
 	@echo 'Finished building: $<'
 	@echo ' '
 
+ifneq ($(MAKECMDGOALS),clean_test1)
 ifneq ($(strip $(TEST1_C++_DEPS)),)
 -include $(TEST1_C++_DEPS)
+endif
 endif
 
 ################################################################################
