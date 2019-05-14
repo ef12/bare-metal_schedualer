@@ -25,7 +25,7 @@ tests/%.o: ../tests/%.cpp
 	
 # clean rule for main makefile
 main_clean:
-	-$(RM) $(MAIN_OBJS)$(MAIN_CPP_DEPS)
+	-$(RM) $(MAIN_OBJS) $(MAIN_CPP_DEPS)
 	-@echo ' '
 	
 # use dependencies for clean	
