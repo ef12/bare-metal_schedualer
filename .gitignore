@@ -35,7 +35,5 @@ prod_ecu/.prod_ecu.g_x
 /.settings
 .vscode/ipch
 *.a
-test/test
-\.vscode/settings\.json
 
 prod_ecu/SDK
