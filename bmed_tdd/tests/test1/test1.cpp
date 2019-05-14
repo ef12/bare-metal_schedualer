@@ -4,7 +4,7 @@
  *  Created on: 30 Apr 2019
  *      Author: efrank
  */
-
+#include <iostream>
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 

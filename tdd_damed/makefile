@@ -13,6 +13,20 @@ L_CPPUTEST_LIBS := \
 CPPUTEST_LIBS := \
 -lCppUTest -lCppUTestExt
 
+C++_SRCS :=
+MAIN_OBJS :=
+MAIN_C++_DEPS :=
+CUT_LOC :=
+TEST1_LOC :=
+TEST1_CUT_SECS :=
+TEST1_CUT_OBJS :=
+TEST1_CUT_C_DEPS :=
+I_CUT_INCS :=
+TEST1_C++_SRCS :=
+TEST1_OBJS :=
+TEST1_C++_DEPS :=
+I_TEST1_INCS :=
+
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
@@ -33,23 +47,23 @@ test1\
 test2
 
 # Tool invocations
-Debug/test1: $(TEST1_OBJS) $(MAIN_OBJS)
+Debug/test1.exe: $(TEST1_OBJS) $(MAIN_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Main Cygwin C++ Linker'
 	g++ -I$(CPPUTEST_INCS) -L"..\extern\cpputest_build\lib" -L"Debug/$(TEST1_LOC)/cut" -o "$@" $(TEST1_OBJS) $(MAIN_OBJS) -ltest1_cut $(CPPUTEST_LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-test1: Debug/test1
+test1: Debug/test1.exe
 # Tool invocations
-Debug/test2: $(TEST2_OBJS) $(MAIN_OBJS)
+Debug/test2.exe: $(TEST2_OBJS) $(MAIN_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Main Cygwin C++ Linker'
 	g++ -o "$@" -I$(CPPUTEST_INCS) $(TEST2_OBJS) $(MAIN_OBJS) $(L_CPPUTEST_LIBS) $(CPPUTEST_LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-test2: Debug/test2
+test2: Debug/test2.exe
 	
 # Other Targets
 clean: clean_test1 clean_test2

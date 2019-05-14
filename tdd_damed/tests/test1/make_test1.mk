@@ -7,6 +7,7 @@ CUT_LOC := \
 TEST1_LOC := \
 tests/test1
 
+
 #CUT_INC_FLAGS := $(addprefix -I,$(CUT_INCLUDES)) $(addprefix -I,$(CUT_INC_DIRS))
 # subtitution
 #INC_DIRS := $(shell find $(SRC_DIRS) -type d)
@@ -26,7 +27,7 @@ TEST1_CUT_C_DEPS := \
 ./Debug/$(TEST1_LOC)/cut/test_functions.d
 
 I_CUT_INCS += \
--I"Ctests\test1"\
+-I"tests\test1"\
 -I"..\bare_metal_event_driven\prod_code\Utils"\
 -I"tests\test2"\
 -I"..\extern\cpputest_build\include"
@@ -71,7 +72,7 @@ I_TEST1_INCS += $(addprefix -I,$(TEST1_LOC))
 	@mkdir -p $(dir $@)
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C++ Compiler'
-	g++ -I$(CPPUTEST_INCS) $(I_TEST1_INCS) $(I_CUT_INCS) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"C:\Users\efrank\Documents\StudyWorkspace\bare-metal_schedualer\extern\cpputest_build\include" $(I_TEST1_INCS) $(I_CUT_INCS) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

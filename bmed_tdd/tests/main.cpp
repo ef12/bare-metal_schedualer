@@ -5,6 +5,7 @@
  *      Author: efrank
  */
 
+#include <iostream>
 #include "CppUTest/CommandLineTestRunner.h"
 #include "CppUTest/TestHarness.h"
 

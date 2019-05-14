@@ -12,13 +12,12 @@ MAIN_OBJS += \
 MAIN_C++_DEPS += \
 ./Debug/tests/main.d 
 
-
 # Each subdirectory must supply rules for building sources it contributes
 ./Debug/tests/%.o: ./tests/%.cpp
 	@mkdir -p $(dir $@)
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C++ Compiler'
-	g++ -I$(CPPUTEST_INCS) -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"C:\Users\efrank\Documents\StudyWorkspace\bare-metal_schedualer\extern\cpputest_build\include" -O1 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
