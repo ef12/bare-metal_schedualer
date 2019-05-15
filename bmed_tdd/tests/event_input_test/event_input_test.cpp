@@ -8,26 +8,28 @@
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
+#include "event_input_test.h"
+
 extern "C"
 {
-
-
+#include "event_input.h"
 }
 
-TEST_GROUP(module_2)
+TEST_GROUP(event_input)
 {
     void setup()
     {
 
     }
-    void teardown() {
+    void teardown
+        ()
+        {
 
-    }
+        }
 };
 
-TEST(module_2,module_2_init)
+TEST(event_input, event_input_init)
 {
-    //CHECK_EQUAL(0,task_enqueue(module_1_task, 0));
+    CHECK_EQUAL(0,event_input_scan());
 }
-
 

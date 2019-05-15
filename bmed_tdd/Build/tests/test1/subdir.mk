@@ -44,9 +44,8 @@ cutLibs/libtest1_cut.a: $(TEST1_CUT_OBJS) #let's link library files into a stati
 	@echo 'Building target: $@'
 	ar rcs $@ $^
 
-
 ################################################################################
-# Automatically-generated file. Do not edit!
+# Recepie for testing code
 ################################################################################
 
 # The source codes to build 

@@ -1,5 +1,5 @@
 ################################################################################
-# Automatically-generated file. Do not edit!
+# Make file for main
 ################################################################################
 WORKSPACE_LOC := ./../..
 # the location of the TDD project reletive to Build directory
